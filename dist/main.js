@@ -14,7 +14,7 @@ var _routes = require('./routes');
 
 var _routes2 = _interopRequireDefault(_routes);
 
-var _loader = require('@guru/loader');
+var _loader = require('@graphql-guru/loader');
 
 var _loader2 = _interopRequireDefault(_loader);
 
