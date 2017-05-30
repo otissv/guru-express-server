@@ -14,9 +14,9 @@ var _routes = require('./routes');
 
 var _routes2 = _interopRequireDefault(_routes);
 
-var _indexLoader = require('../../loaders/dist/index-loader');
+var _loader = require('@guru/loader');
 
-var _indexLoader2 = _interopRequireDefault(_indexLoader);
+var _loader2 = _interopRequireDefault(_loader);
 
 var _database = require('./database');
 
@@ -32,7 +32,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                                                                                                                                                                                                                                                                                                                                                                                                                                                            * Main app 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                            */
 
-// import loader from '@guru/loader';
+// import loader from '../../loaders/dist/index-loader';
 
 
 exports.default = function () {
@@ -47,7 +47,7 @@ exports.default = function () {
           case 0:
             _context.prev = 0;
             _context.next = 3;
-            return (0, _indexLoader2.default)();
+            return (0, _loader2.default)();
 
           case 3:
             _ref3 = _context.sent;
