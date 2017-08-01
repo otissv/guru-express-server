@@ -18,6 +18,8 @@ function databaseConnections(_ref) {
   var databases = _ref.databases,
       config = _ref.config;
 
+  if (databases == null) return null;
+
   var db = databases.databases;
 
   return Object.keys(db).reduce(function (previousObj, currentKey) {

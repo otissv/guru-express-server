@@ -14,9 +14,9 @@ var _routes = require('./routes');
 
 var _routes2 = _interopRequireDefault(_routes);
 
-var _loader = require('@graphql-guru/loader');
+var _indexLoader = require('../../loaders/dist/index-loader');
 
-var _loader2 = _interopRequireDefault(_loader);
+var _indexLoader2 = _interopRequireDefault(_indexLoader);
 
 var _database = require('./database');
 
@@ -32,14 +32,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                                                                                                                                                                                                                                                                                                                                                                                                                                                            * Main app 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                            */
 
-// import loader from '../../loaders/dist/index-loader';
+// import loader from '@graphql-guru/loader';
 
 
 exports.default = function () {
   var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(_ref2) {
     var app = _ref2.app;
 
-    var _ref3, databaseLoader, configLoader, middlewareLoader, modelLoader, resolverLoader, routeLoader, schemaLoader, context, resolvers, connectors, routesContext;
+    var _ref3, databaseLoader, configLoader, modelLoader, middlewareLoader, jsonLoader, resolverLoader, routeLoader, schemaLoader, context, resolvers, connectors, routesContext;
 
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
@@ -47,14 +47,15 @@ exports.default = function () {
           case 0:
             _context.prev = 0;
             _context.next = 3;
-            return (0, _loader2.default)();
+            return (0, _indexLoader2.default)();
 
           case 3:
             _ref3 = _context.sent;
             databaseLoader = _ref3.databaseLoader;
             configLoader = _ref3.configLoader;
-            middlewareLoader = _ref3.middlewareLoader;
             modelLoader = _ref3.modelLoader;
+            middlewareLoader = _ref3.middlewareLoader;
+            jsonLoader = _ref3.jsonLoader;
             resolverLoader = _ref3.resolverLoader;
             routeLoader = _ref3.routeLoader;
             schemaLoader = _ref3.schemaLoader;
@@ -77,7 +78,7 @@ exports.default = function () {
             resolvers = resolverLoader.resolvers;
             connectors = resolverLoader.connectors;
 
-            // load schema definitions
+            // create route context
 
             routesContext = _extends({
               connectors: connectors,
@@ -85,35 +86,36 @@ exports.default = function () {
                 databases: databaseLoader,
                 config: app.locals.database
               }),
-              locals: app.locals
+              json: jsonLoader,
+              locals: app.locals,
+              models: modelLoader
             }, context);
 
 
             (0, _routes2.default)({
               app: app,
               context: routesContext,
-              models: modelLoader,
               resolvers: resolvers,
               routes: function routes() {
                 return routeLoader(_extends({ app: app }, routesContext));
               },
               schema: schemaLoader
             });
-            _context.next = 23;
+            _context.next = 24;
             break;
 
-          case 20:
-            _context.prev = 20;
+          case 21:
+            _context.prev = 21;
             _context.t0 = _context['catch'](0);
 
             console.log(_context.t0);
 
-          case 23:
+          case 24:
           case 'end':
             return _context.stop();
         }
       }
-    }, _callee, this, [[0, 20]]);
+    }, _callee, this, [[0, 21]]);
   }));
 
   function main(_x) {

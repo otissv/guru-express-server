@@ -4,8 +4,8 @@
 
 import environment from './environment';
 import routes from './routes';
-import loader from '@graphql-guru/loader';
-// import loader from '../../loaders/dist/index-loader';
+// import loader from '@graphql-guru/loader';
+import loader from '../../loaders/dist/index-loader';
 import databaseConnections from './database';
 import middleware from './middleware/index-middleware';
 
@@ -14,8 +14,9 @@ export default async function main ({ app }) {
     const {
       databaseLoader,
       configLoader,
-      middlewareLoader,
       modelLoader,
+      middlewareLoader,
+      jsonLoader,
       resolverLoader,
       routeLoader,
       schemaLoader
@@ -37,21 +38,22 @@ export default async function main ({ app }) {
     const resolvers = resolverLoader.resolvers;
     const connectors = resolverLoader.connectors;
 
-    // load schema definitions
+    // create route context
     const routesContext = {
       connectors,
       databases: databaseConnections({
         databases: databaseLoader,
         config: app.locals.database
       }),
+      json: jsonLoader,
       locals: app.locals,
+      models: modelLoader,
       ...context
     };
 
     routes({
       app,
       context: routesContext,
-      models: modelLoader,
       resolvers,
       routes: () => routeLoader({ app, ...routesContext }),
       schema: schemaLoader

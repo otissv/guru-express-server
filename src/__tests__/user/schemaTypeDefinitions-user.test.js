@@ -6,7 +6,7 @@ const readModuleFile = utils.readModuleFile;
 
 
 test('Has correct user schema definitions', async (t) => {
-  const actual = await readModuleFile('user/schemas/schemaTypeDefinition-user.gql');
+  const actual = await readModuleFile('user/schemas/schemaTypeDefinition-user.graphql');
 
   const expect = `
 input InputUser {

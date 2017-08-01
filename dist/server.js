@@ -49,7 +49,7 @@ exports.default = function () {
             _server = app.listen(app.get('port'), function () {
               var port = _server.address().port;
 
-              process.stdout.write('\n      Guru Express server started in ' + app.get('env') + ' mode.\n      Local address : http://localhost:' + port + '\n      ' + (externalAddress ? 'External address ' + 'http://' + externalAddress + ':' + port : '') + '\n      ');
+              process.stdout.write('\nGuru Express server started in ' + app.get('env') + ' mode.\nLocal address : http://localhost:' + port + '\n' + (externalAddress ? 'External address ' + 'http://' + externalAddress + ':' + port : '') + '\n\n');
             });
             _context.next = 15;
             break;

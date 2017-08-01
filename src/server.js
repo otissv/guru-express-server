@@ -5,7 +5,6 @@
 import express from 'express';
 import main from './main';
 
-
 export default async function server () {
   try {
     const app = express();
@@ -14,7 +13,6 @@ export default async function server () {
 
     await main({ app });
 
-    
     app.set('port', process.env.PORT || app.locals.port);
 
     let externalAddress;
@@ -29,13 +27,15 @@ export default async function server () {
       const port = server.address().port;
 
       process.stdout.write(`
-      Guru Express server started in ${app.get('env')} mode.
-      Local address : http://localhost:${port}
-      ${externalAddress ? 'External address ' + 'http://' + externalAddress + ':' + port : ''}
-      `);
+Guru Express server started in ${app.get('env')} mode.
+Local address : http://localhost:${port}
+${externalAddress
+        ? 'External address ' + 'http://' + externalAddress + ':' + port
+        : ''}
+
+`);
     });
   } catch (error) {
     console.log(error);
   }
-    
 }

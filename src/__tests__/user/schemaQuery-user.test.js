@@ -5,7 +5,7 @@ const readModuleFile = utils.readModuleFile;
 
 
 test('Has correct user schema queries', async (t) => {
-  const actual = await readModuleFile('user/schemas/schemaQuery-user.gql');
+  const actual = await readModuleFile('user/schemas/schemaQuery-user.graphql');
 
   const expect = `
 userFindAll (

@@ -4,15 +4,10 @@
 
 import coreRoutes from './routes/index-route';
 
-
-function routes ({ app, context, schema, resolvers, routes, models }) {
-  const pramas = { 
-    app, 
-    context: {
-      ...context,
-      locals: app.locals,
-      models
-    },
+function routes ({ app, context, schema, resolvers, routes }) {
+  const pramas = {
+    app,
+    context,
     resolvers,
     schema
   };
@@ -20,6 +15,6 @@ function routes ({ app, context, schema, resolvers, routes, models }) {
   routes(pramas);
   coreRoutes(pramas);
   // 404 page
-};
+}
 
 export default routes;

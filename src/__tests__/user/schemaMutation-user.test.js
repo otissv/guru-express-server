@@ -5,7 +5,7 @@ const readModuleFile = utils.readModuleFile;
 
 
 test('Has correct user schema mutations', async (t) => {
-  const actual = await readModuleFile('user/schemas/schemaMutation-user.gql');
+  const actual = await readModuleFile('user/schemas/schemaMutation-user.graphql');
 
   const expect = `
 userCreate (

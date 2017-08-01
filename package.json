@@ -24,6 +24,7 @@
     "nodejs"
   ],
   "dependencies": {
+    "@graphql-guru/babel-tasks": "^1.0.0",
     "@graphql-guru/loader": "^1.0.0",
     "base64-lite": "^1.0.3",
     "body-parser": "^1.17.1",

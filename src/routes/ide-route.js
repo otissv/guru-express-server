@@ -17,7 +17,6 @@ export default function ideRoute ({ app, context }) {
   app.use(
     '/ide',
     graphqlExpress(req => {
-      // parse persistent query against schema
       return {
         schema: makeExecutableSchema({
           typeDefs: schema,

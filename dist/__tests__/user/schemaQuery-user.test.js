@@ -15,7 +15,7 @@ test('Has correct user schema queries', function () {
         switch (_context.prev = _context.next) {
           case 0:
             _context.next = 2;
-            return readModuleFile('user/schemas/schemaQuery-user.gql');
+            return readModuleFile('user/schemas/schemaQuery-user.graphql');
 
           case 2:
             actual = _context.sent;

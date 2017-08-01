@@ -33,7 +33,6 @@ function ideRoute(_ref) {
   });
 
   app.use('/ide', (0, _graphqlServerExpress.graphqlExpress)(function (req) {
-    // parse persistent query against schema
     return {
       schema: (0, _graphqlTools.makeExecutableSchema)({
         typeDefs: _indexIde.schema,
