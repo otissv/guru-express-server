@@ -14,6 +14,10 @@ var _shelljs = require('shelljs');
 
 var _shelljs2 = _interopRequireDefault(_shelljs);
 
+var _lowdb = require('lowdb');
+
+var _lowdb2 = _interopRequireDefault(_lowdb);
+
 var _constants = require('../../../constants');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -127,6 +131,16 @@ exports.default = {
     return function idePersistedFindAll(_x, _x2, _x3) {
       return _ref.apply(this, arguments);
     };
-  }()
+  }(),
+
+  idePersistedHistoryFindAll: function idePersistedHistoryFindAll(obj, args, context) {
+    var db = (0, _lowdb2.default)(_constants.PERSISTED_HISTORY_FILE);
+    if (db.source !== _constants.PERSISTED_HISTORY_FILE) {
+      db.defaults({ history: [] }).write();
+      return { history: [] };
+    } else {
+      return db.get('history').value();
+    }
+  }
 };
 //# sourceMappingURL=resolverQuery-ide-persisted.js.map

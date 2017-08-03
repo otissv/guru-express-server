@@ -1,3 +1,5 @@
 export default `
-  ideQueryFindAll: [IdeQuery]`;
+  ideQueryFindAll: [IdeQuery]
+  ideQueryHistoryFindAll: [IdeQuery]
+`;
 

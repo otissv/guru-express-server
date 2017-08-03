@@ -14,6 +14,10 @@ var _shelljs = require('shelljs');
 
 var _shelljs2 = _interopRequireDefault(_shelljs);
 
+var _lowdb = require('lowdb');
+
+var _lowdb2 = _interopRequireDefault(_lowdb);
+
 var _constants = require('../../../constants');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -21,6 +25,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var rm = _shelljs2.default.rm;
 
 var fs = _bluebird2.default.promisifyAll(require('fs'));
+
 exports.default = {
   idePersistedCollectionClear: function idePersistedCollectionClear(obj, args, context) {
     rm('-r', _constants.PERSISTED_DIRECTORY);
@@ -50,6 +55,19 @@ exports.default = {
       };
     });
   },
-  idePersistedRemove: function idePersistedRemove(obj, args, context) {}
+  idePersistedRemove: function idePersistedRemove(obj, args, context) {},
+  idePersistedHistoryClear: function idePersistedHistoryClear(obj, args, context) {
+    var db = (0, _lowdb2.default)(_constants.PERSISTED_HISTORY_FILE);
+    db.set({ history: [] }).write();
+
+    fs.writeFileAsync(_constants.PERSISTED_HISTORY_FILE, '{\n  "history": [] \n}');
+    return [];
+  },
+  idePersistedHistorySave: function idePersistedHistorySave(obj, args, context) {
+    var db = (0, _lowdb2.default)(_constants.PERSISTED_HISTORY_FILE);
+
+    db.defaults({ history: [] }).write();
+    db.get('history').push(args).write();
+  }
 };
 //# sourceMappingURL=resolverMutation-ide-persisted.js.map

@@ -22,30 +22,33 @@ export default function graphqlRoute ({
   const logger = { log: e => console.log(e) };
 
   function parsePersistedQuery ({ req, res, next, dir, whitelist }) {
-    if (Array.isArray(req.body) && req.body[0]) {
-      req.body = [...req.body].map(item => {
+    const query = req.body.query;
+    const variables = req.body.variables || '';
+
+    if (Array.isArray(query) && query[0]) {
+      req.body = [...query].map(item => {
         if (item.id) {
-          const queryDoc = fs.readFileSync(
-            `${dir}${item.id}-query.json`,
-            'utf8'
-          );
+          const file = `${dir}${item.id}-query.json`;
+          if (fs.existsSync(file)) {
+            const queryDoc = fs.readFileSync(file, 'utf8');
+            
+            const vars = {
+              ...JSON.parse(variables),
+              ...item.variables
+            };
 
-          const fragments = item.fragments
-            ? item.fragments.map(fragment => {
-              const fragmentDoc = fs.readFileSync(
-                  `${dir}${fragment}-query.json`,
-                  'utf8'
-                );
+            return {
+              query: JSON.parse(queryDoc).query,
+              operationName: item.operationName || null,
+              variables: JSON.stringify(vars)
+            };
+          } else {
+            console.log('The persisted query file not found');
+            return res.status(400).json({
+              errors: 'Invalid request'
+            });
+          }
 
-              return JSON.parse(fragmentDoc).query;
-            })
-            : [];
-
-          return {
-            query: `${JSON.parse(queryDoc).query} ${fragments.join('\n\n')}`,
-            operationName: item.operationName || null,
-            variables: JSON.stringify(item.variables)
-          };
         } else {
           if (whitelist) {
             console.log('The request is not a persisted query');

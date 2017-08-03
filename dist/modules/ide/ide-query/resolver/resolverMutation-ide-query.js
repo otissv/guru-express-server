@@ -14,6 +14,10 @@ var _shelljs = require('shelljs');
 
 var _shelljs2 = _interopRequireDefault(_shelljs);
 
+var _lowdb = require('lowdb');
+
+var _lowdb2 = _interopRequireDefault(_lowdb);
+
 var _constants = require('../../../constants');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -51,6 +55,19 @@ exports.default = {
       };
     });
   },
-  ideQueryRemove: function ideQueryRemove(obj, args, context) {}
+  ideQueryRemove: function ideQueryRemove(obj, args, context) {},
+  ideQueryHistoryClear: function ideQueryHistoryClear(obj, args, context) {
+    var db = (0, _lowdb2.default)(_constants.QUERY_HISTORY_FILE);
+    db.set({ history: [] }).write();
+
+    fs.writeFileAsync(_constants.QUERY_HISTORY_FILE, '{\n  "history": [] \n}');
+    return [];
+  },
+  ideQueryHistorySave: function ideQueryHistorySave(obj, args, context) {
+    var db = (0, _lowdb2.default)(_constants.QUERY_HISTORY_FILE);
+
+    db.defaults({ history: [] }).write();
+    db.get('history').push(args).write();
+  }
 };
 //# sourceMappingURL=resolverMutation-ide-query.js.map

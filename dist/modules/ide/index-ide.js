@@ -47,26 +47,6 @@ var _schemaTypeIdePersisted = require('./ide-persisted/schema/schemaType-ide-per
 
 var _schemaTypeIdePersisted2 = _interopRequireDefault(_schemaTypeIdePersisted);
 
-var _resolverMutationIdeQueryHistory = require('./ide-query-history/resolver/resolverMutation-ide-query-history');
-
-var _resolverMutationIdeQueryHistory2 = _interopRequireDefault(_resolverMutationIdeQueryHistory);
-
-var _resolverQueryIdeQueryHistory = require('./ide-query-history/resolver/resolverQuery-ide-query-history');
-
-var _resolverQueryIdeQueryHistory2 = _interopRequireDefault(_resolverQueryIdeQueryHistory);
-
-var _schemaQueryIdeQueryHistory = require('./ide-query-history/schema/schemaQuery-ide-query-history');
-
-var _schemaQueryIdeQueryHistory2 = _interopRequireDefault(_schemaQueryIdeQueryHistory);
-
-var _schemaMutationIdeQueryHistory = require('./ide-query-history/schema/schemaMutation-ide-query-history');
-
-var _schemaMutationIdeQueryHistory2 = _interopRequireDefault(_schemaMutationIdeQueryHistory);
-
-var _schemaTypeIdeQueryHistory = require('./ide-query-history/schema/schemaType-ide-query-history');
-
-var _schemaTypeIdeQueryHistory2 = _interopRequireDefault(_schemaTypeIdeQueryHistory);
-
 var _resolverMutationIdeQuery = require('./ide-query/resolver/resolverMutation-ide-query');
 
 var _resolverMutationIdeQuery2 = _interopRequireDefault(_resolverMutationIdeQuery);
@@ -90,10 +70,10 @@ var _schemaTypeIdeQuery2 = _interopRequireDefault(_schemaTypeIdeQuery);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var resolvers = exports.resolvers = {
-  Query: _extends({}, _resolverQueryIdePersistedHistory2.default, _resolverQueryIdePersisted2.default, _resolverQueryIdeQueryHistory2.default, _resolverQueryIdeQuery2.default),
+  Query: _extends({}, _resolverQueryIdePersistedHistory2.default, _resolverQueryIdePersisted2.default, _resolverQueryIdeQuery2.default),
 
-  Mutation: _extends({}, _resolverMutationIdePersistedHistory2.default, _resolverMutationIdePersisted2.default, _resolverMutationIdeQueryHistory2.default, _resolverMutationIdeQuery2.default)
+  Mutation: _extends({}, _resolverMutationIdePersistedHistory2.default, _resolverMutationIdePersisted2.default, _resolverMutationIdeQuery2.default)
 };
 
-var schema = exports.schema = '\ntype Query {\n  ' + _schemaQueryIdePersistedHistory2.default + '\n  ' + _schemaQueryIdePersisted2.default + '\n\n  ' + _schemaQueryIdeQueryHistory2.default + '\n  ' + _schemaQueryIdeQuery2.default + '\n}\n\ntype Mutation {\n  ' + _schemaMutationIdePersistedHistory2.default + '\n  ' + _schemaMutationPersisted2.default + '\n\n  ' + _schemaMutationIdeQueryHistory2.default + '\n  ' + _schemaMutationQuery2.default + '\n}\n\n' + _schemaTypeIdePersistedHistory2.default + '\n' + _schemaTypeIdePersisted2.default + '\n\n' + _schemaTypeIdeQueryHistory2.default + '\n' + _schemaTypeIdeQuery2.default + '\n';
+var schema = exports.schema = '\ntype Query {\n  ' + _schemaQueryIdePersistedHistory2.default + '\n  ' + _schemaQueryIdePersisted2.default + '\n\n  ' + _schemaQueryIdeQuery2.default + '\n}\n\ntype Mutation {\n  ' + _schemaMutationIdePersistedHistory2.default + '\n  ' + _schemaMutationPersisted2.default + '\n\n  ' + _schemaMutationQuery2.default + '\n}\n\n' + _schemaTypeIdePersistedHistory2.default + '\n' + _schemaTypeIdePersisted2.default + '\n\n' + _schemaTypeIdeQuery2.default + '\n';
 //# sourceMappingURL=index-ide.js.map

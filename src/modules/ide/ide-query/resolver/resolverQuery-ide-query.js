@@ -1,7 +1,8 @@
 'use strict';
 import Bluebird from 'bluebird';
 import shell from 'shelljs';
-import { QUERY_DIRECTORY } from '../../../constants';
+import low from 'lowdb';
+import { QUERY_DIRECTORY, QUERY_HISTORY_FILE } from '../../../constants';
 const fs = Bluebird.promisifyAll(require('fs'));
 const { mkdir, ls, error } = shell;
 
@@ -44,5 +45,11 @@ export default {
     } catch (error) {
       return error;
     }
+  },
+
+  ideQueryHistoryFindAll (obj, args, context) {
+    const db = low(QUERY_HISTORY_FILE);
+    db.defaults({ history: [] }).write();
+    return db.get('history').value();
   }
 };

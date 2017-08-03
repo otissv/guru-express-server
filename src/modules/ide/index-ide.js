@@ -10,12 +10,6 @@ import idePersistedSchemaPersisted from './ide-persisted/schema/schemaQuery-ide-
 import idePersistedSchemaMutation from './ide-persisted/schema/schemaMutation-persisted';
 import idePersistedSchemaType from './ide-persisted/schema/schemaType-ide-persisted';
 
-import ideQueryHistoryResolverMutation from './ide-query-history/resolver/resolverMutation-ide-query-history';
-import ideQueryHistoryResolverQuery from './ide-query-history/resolver/resolverQuery-ide-query-history';
-import ideQueryHistorySchemaQuery from './ide-query-history/schema/schemaQuery-ide-query-history';
-import ideQueryHistorySchemaMutation from './ide-query-history/schema/schemaMutation-ide-query-history';
-import ideQueryHistorySchemaType from './ide-query-history/schema/schemaType-ide-query-history';
-
 import ideQueryResolverMutation from './ide-query/resolver/resolverMutation-ide-query';
 import ideQueryResolverQuery from './ide-query/resolver/resolverQuery-ide-query';
 import ideQuerySchemaQuery from './ide-query/schema/schemaQuery-ide-query';
@@ -27,7 +21,6 @@ export const resolvers = {
     ...idePersistedHistoryResolverPersisted,
     ...idePersistedResolverPersisted,
 
-    ...ideQueryHistoryResolverQuery,
     ...ideQueryResolverQuery
   },
 
@@ -35,7 +28,6 @@ export const resolvers = {
     ...idePersistedHistoryResolverMutation,
     ...idePersistedResolverMutation,
 
-    ...ideQueryHistoryResolverMutation,
     ...ideQueryResolverMutation
   }
 };
@@ -45,7 +37,6 @@ type Query {
   ${idePersistedHistorySchemaPersisted}
   ${idePersistedSchemaPersisted}
 
-  ${ideQueryHistorySchemaQuery}
   ${ideQuerySchemaQuery}
 }
 
@@ -53,13 +44,11 @@ type Mutation {
   ${idePersistedHistorySchemaMutation}
   ${idePersistedSchemaMutation}
 
-  ${ideQueryHistorySchemaMutation}
   ${ideQuerySchemaMutation}
 }
 
 ${idePersistedHistorySchemaType}
 ${idePersistedSchemaType}
 
-${ideQueryHistorySchemaType}
 ${ideQuerySchemaType}
 `;

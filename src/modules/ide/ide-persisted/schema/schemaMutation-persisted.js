@@ -14,4 +14,14 @@ export default `
     response:    String
   ): IdePersisted
 
-  idePersistedRemove: IdePersisted`;
+  idePersistedRemove: IdePersisted
+
+  idePersistedHistoryClear: [IdePersisted]
+  
+  idePersistedHistorySave (
+    id:        String
+    endpoint:  String
+    query:     String
+    variables: String
+    response:  String
+  ): IdePersisted  `;

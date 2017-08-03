@@ -1,3 +1,5 @@
 export default `
-  idePersistedFindAll: [IdePersisted]`;
+  idePersistedFindAll: [IdePersisted]
+  
+  idePersistedHistoryFindAll: [IdePersisted]`;
 

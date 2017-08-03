@@ -52,22 +52,29 @@ function graphqlRoute(_ref) {
         dir = _ref2.dir,
         whitelist = _ref2.whitelist;
 
-    if (Array.isArray(req.body) && req.body[0]) {
-      req.body = [].concat(_toConsumableArray(req.body)).map(function (item) {
+    var query = req.body.query;
+    var variables = req.body.variables || '';
+
+    if (Array.isArray(query) && query[0]) {
+      req.body = [].concat(_toConsumableArray(query)).map(function (item) {
         if (item.id) {
-          var queryDoc = _fs2.default.readFileSync('' + dir + item.id + '-query.json', 'utf8');
+          var file = '' + dir + item.id + '-query.json';
+          if (_fs2.default.existsSync(file)) {
+            var queryDoc = _fs2.default.readFileSync(file, 'utf8');
 
-          var fragments = item.fragments ? item.fragments.map(function (fragment) {
-            var fragmentDoc = _fs2.default.readFileSync('' + dir + fragment + '-query.json', 'utf8');
+            var vars = _extends({}, JSON.parse(variables), item.variables);
 
-            return JSON.parse(fragmentDoc).query;
-          }) : [];
-
-          return {
-            query: JSON.parse(queryDoc).query + ' ' + fragments.join('\n\n'),
-            operationName: item.operationName || null,
-            variables: JSON.stringify(item.variables)
-          };
+            return {
+              query: JSON.parse(queryDoc).query,
+              operationName: item.operationName || null,
+              variables: JSON.stringify(vars)
+            };
+          } else {
+            console.log('The persisted query file not found');
+            return res.status(400).json({
+              errors: 'Invalid request'
+            });
+          }
         } else {
           if (whitelist) {
             console.log('The request is not a persisted query');

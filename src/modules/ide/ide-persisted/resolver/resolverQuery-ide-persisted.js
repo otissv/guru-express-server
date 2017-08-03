@@ -1,8 +1,10 @@
 'use strict';
 import Bluebird from 'bluebird';
 import shell from 'shelljs';
+import low from 'lowdb';
+import { PERSISTED_DIRECTORY, PERSISTED_HISTORY_FILE } from '../../../constants';
+
 const fs = Bluebird.promisifyAll(require('fs'));
-import { PERSISTED_DIRECTORY } from '../../../constants';
 const { mkdir, ls, error } = shell;
 
 export default {
@@ -43,6 +45,16 @@ export default {
       }
     } catch (error) {
       return error;
+    }
+  },
+
+  idePersistedHistoryFindAll (obj, args, context) {
+    const db = low(PERSISTED_HISTORY_FILE);
+    if (db.source !== PERSISTED_HISTORY_FILE) {
+      db.defaults({ history: [] }).write();
+      return { history: [] };
+    } else {
+      return db.get('history').value();
     }
   }
 };
