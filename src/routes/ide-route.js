@@ -14,11 +14,9 @@ export default function ideRoute ({ app, context }) {
 
   app.route('/ide/schema').get((req, res) => res.json(parse(schema)));
 
-  console.log(schema)
   app.use(
     '/ide',
     graphqlExpress(req => {
-
       return {
         schema: makeExecutableSchema({
           typeDefs: schema,

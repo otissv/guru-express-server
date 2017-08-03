@@ -32,9 +32,7 @@ function ideRoute(_ref) {
     return res.json((0, _graphql.parse)(_indexIde.schema));
   });
 
-  console.log(_indexIde.schema);
   app.use('/ide', (0, _graphqlServerExpress.graphqlExpress)(function (req) {
-
     return {
       schema: (0, _graphqlTools.makeExecutableSchema)({
         typeDefs: _indexIde.schema,
