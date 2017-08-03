@@ -1,9 +1,3 @@
-import idePersistedHistoryResolverMutation from './ide-persisted-history/resolver/resolverMutation-ide-persisted-history';
-import idePersistedHistoryResolverPersisted from './ide-persisted-history/resolver/resolverQuery-ide-persisted-history';
-import idePersistedHistorySchemaPersisted from './ide-persisted-history/schema/schemaQuery-ide-persisted-history';
-import idePersistedHistorySchemaMutation from './ide-persisted-history/schema/schemaMutation-ide-persisted-history';
-import idePersistedHistorySchemaType from './ide-persisted-history/schema/schemaType-ide-persisted-history';
-
 import idePersistedResolverMutation from './ide-persisted/resolver/resolverMutation-ide-persisted';
 import idePersistedResolverPersisted from './ide-persisted/resolver/resolverQuery-ide-persisted';
 import idePersistedSchemaPersisted from './ide-persisted/schema/schemaQuery-ide-persisted';
