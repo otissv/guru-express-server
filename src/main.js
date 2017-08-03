@@ -4,8 +4,7 @@
 
 import environment from './environment';
 import routes from './routes';
-// import loader from '@graphql-guru/loader';
-import loader from '../../loaders/dist/index-loader';
+import loader from '@graphql-guru/loader';
 import databaseConnections from './database';
 import middleware from './middleware/index-middleware';
 
