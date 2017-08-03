@@ -1,6 +1,6 @@
 {
   "name": "@graphql-guru/express-server",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Guru GraphQL Express server built on top of Apollo server",
   "main": "dist/server.js",
   "scripts": {
