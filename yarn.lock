@@ -66,9 +66,9 @@
     shelljs "^0.7.7"
     watch "^1.0.2"
 
-"@graphql-guru/loader@^1.0.2":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@graphql-guru/loader/-/loader-1.0.4.tgz#d5644de51d3c34667f25470fa0e7b3895771919d"
+"@graphql-guru/loader@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@graphql-guru/loader/-/loader-1.0.5.tgz#9d8e9df55fb11e819060b13c96db33e20579a438"
   dependencies:
     "@graphql-guru/babel-tasks" "^1.0.0"
     bluebird "^3.5.0"
