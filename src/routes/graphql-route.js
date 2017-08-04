@@ -23,7 +23,7 @@ export default function graphqlRoute ({
 
   function parsePersistedQuery ({ req, res, next, dir, whitelist }) {
     const query = req.body.query;
-    const variables = req.body.variables || '';
+    const variables = req.body.variables || '{}';
 
     if (Array.isArray(query) && query[0]) {
       req.body = [...query].map(item => {
@@ -31,10 +31,11 @@ export default function graphqlRoute ({
           const file = `${dir}${item.id}-query.json`;
           if (fs.existsSync(file)) {
             const queryDoc = fs.readFileSync(file, 'utf8');
-            
+            const itemVariables = item.variables ? item.variables : {};
+
             const vars = {
               ...JSON.parse(variables),
-              ...item.variables
+              ...itemVariables
             };
 
             return {
@@ -102,20 +103,19 @@ export default function graphqlRoute ({
   //   });
   // }
 
-  app.use('/graphql', (req, res, next) => {
-    parsePersistedQuery({
-      req,
-      res,
-      next,
-      dir: `${process.cwd()}/server/queries/`,
-      whitelist: false
-    });
-  });
-
   // app.use('/graphql', validateQueryOperation);
 
   app.use(
     '/graphql',
+    (req, res, next) => {
+      parsePersistedQuery({
+        req,
+        res,
+        next,
+        dir: `${process.cwd()}/server/queries/`,
+        whitelist: false
+      });
+    },
     graphqlExpress(req => {
       return {
         schema: makeExecutableSchema({

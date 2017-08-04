@@ -30,13 +30,13 @@ export default async function server () {
 Guru Express server started in ${app.get('env')} mode.
  - IDE address           = http://localhost:${port}
 ${externalAddress
-  ? ' - External IDE address  = ' + 'http://' + externalAddress + ':' + port
-  : ''}
+    ? ' - External IDE address  = ' + 'http://' + externalAddress + ':' + port
+    : ''}
 
  - GraphQL endpoint:     = http://localhost:${port}/graphql
 ${externalAddress
-  ? ' - External IDE endpoint = ' + 'http://' + externalAddress + ':' + port + '/graphql'
-  : ''}
+    ? ' - External IDE endpoint = ' + 'http://' + externalAddress + ':' + port + '/graphql'
+    : ''}
 
 `);
     });

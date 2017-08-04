@@ -20,25 +20,25 @@ export default {
         const queries =
           files.length > 0
             ? await Bluebird.all(
-                files.map(async file => {
-                  try {
-                    const content = await fs.readFileAsync(
-                      `${QUERY_DIRECTORY}/${file}`,
-                      'utf8'
-                    );
+              files.map(async file => {
+                try {
+                  const content = await fs.readFileAsync(
+                    `${QUERY_DIRECTORY}/${file}`,
+                    'utf8'
+                  );
 
-                    const contentParse = JSON.parse(content);
-                    return contentParse.results
-                      ? {
-                        ...contentParse,
-                        results: JSON.stringify(contentParse.results)
-                      }
-                      : contentParse;
-                  } catch (error) {
-                    console.log(error);
-                  }
-                })
-              )
+                  const contentParse = JSON.parse(content);
+                  return contentParse.results
+                    ? {
+                      ...contentParse,
+                      results: JSON.stringify(contentParse.results)
+                    }
+                    : contentParse;
+                } catch (error) {
+                  console.log(error);
+                }
+              })
+            )
             : Bluebird.resolve([]);
         return queries;
       }

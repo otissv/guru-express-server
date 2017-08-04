@@ -53,7 +53,7 @@ function graphqlRoute(_ref) {
         whitelist = _ref2.whitelist;
 
     var query = req.body.query;
-    var variables = req.body.variables || '';
+    var variables = req.body.variables || '{}';
 
     if (Array.isArray(query) && query[0]) {
       req.body = [].concat(_toConsumableArray(query)).map(function (item) {
@@ -61,8 +61,9 @@ function graphqlRoute(_ref) {
           var file = '' + dir + item.id + '-query.json';
           if (_fs2.default.existsSync(file)) {
             var queryDoc = _fs2.default.readFileSync(file, 'utf8');
+            var itemVariables = item.variables ? item.variables : {};
 
-            var vars = _extends({}, JSON.parse(variables), item.variables);
+            var vars = _extends({}, JSON.parse(variables), itemVariables);
 
             return {
               query: JSON.parse(queryDoc).query,
@@ -128,6 +129,8 @@ function graphqlRoute(_ref) {
   //   });
   // }
 
+  // app.use('/graphql', validateQueryOperation);
+
   app.use('/graphql', function (req, res, next) {
     parsePersistedQuery({
       req: req,
@@ -136,11 +139,7 @@ function graphqlRoute(_ref) {
       dir: process.cwd() + '/server/queries/',
       whitelist: false
     });
-  });
-
-  // app.use('/graphql', validateQueryOperation);
-
-  app.use('/graphql', (0, _graphqlServerExpress.graphqlExpress)(function (req) {
+  }, (0, _graphqlServerExpress.graphqlExpress)(function (req) {
     return {
       schema: (0, _graphqlTools.makeExecutableSchema)({
         typeDefs: schema.ast,
