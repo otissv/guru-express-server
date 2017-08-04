@@ -14,9 +14,9 @@ var _routes = require('./routes');
 
 var _routes2 = _interopRequireDefault(_routes);
 
-var _indexLoader = require('../../loaders/dist/index-loader');
+var _loader = require('@graphql-guru/loader');
 
-var _indexLoader2 = _interopRequireDefault(_indexLoader);
+var _loader2 = _interopRequireDefault(_loader);
 
 var _database = require('./database');
 
@@ -32,9 +32,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                                                                                                                                                                                                                                                                                                                                                                                                                                                            * Main app 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                            */
 
-// import loader from '@graphql-guru/loader';
-
-
 exports.default = function () {
   var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(_ref2) {
     var app = _ref2.app;
@@ -47,7 +44,7 @@ exports.default = function () {
           case 0:
             _context.prev = 0;
             _context.next = 3;
-            return (0, _indexLoader2.default)();
+            return (0, _loader2.default)();
 
           case 3:
             _ref3 = _context.sent;
